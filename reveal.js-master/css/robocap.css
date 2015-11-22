@@ -1,0 +1,30 @@
+.reveal .diagram-display {
+  padding: 0;
+  margin: 0;
+  min-height: 700px;
+  min-width:100%;
+  height:auto;
+}
+
+.edgePaths .path {
+	stroke: red;
+	stroke-width: 3px;
+}
+
+.node .label, .edgeLabel {
+	color: black;	
+}
+
+marker[id^='arrowhead'] {
+	stroke: red;
+}
+
+.diagram-data {
+	display: none;
+}
+
+.reveal .onfront {
+	border: 0px;
+	background: none;
+	box-shadow: none;
+}
