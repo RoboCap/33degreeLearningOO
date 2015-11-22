@@ -232,6 +232,40 @@ nxjupload HelloWorld.nxj
 							style F fill: blue;
 						</span>
 						<div class="diagram-display"></div>
+					 </section>
+					 <section>
+					 	<h2>Behavior API</h2>
+					 	<h3><i>Behavior</i></h3>
+					    <pre><code data-trim class="java">
+boolean takeControl();
+// Returns a boolean value to indicate 
+// if this behavior should become active.
+
+void action();
+// The code in this method begins performing 
+// its task when the behavior becomes active.
+
+void suppress();
+// The code in the suppress() method should immediately 
+// terminate the code running in the action() method.
+					    </code></pre>
+					 </section>					 
+					 <section>
+					 	<h2>Behavior API</h2>
+					 	<h3><i>Arbitrator</i></h3>
+					    <pre><code data-trim class="java">
+public Arbitrator(Behavior[] behaviors, boolean returnWhenInactive)
+// Creates an Arbitrator object that regulates 
+// when each of the behaviors will become active.
+
+public void start()
+// Starts the arbitration deciding which behavior will become active. 
+// The Arbitrator calls the takeControl() method on each Behavior  
+// till it finds an object that wants to take control.
+// If the priority index of this behavior is greater 
+// than that of the current active behavior, 
+// the active behavior is suppressed. 
+					    </code></pre>
 					 </section>					 
 				</section>
 
