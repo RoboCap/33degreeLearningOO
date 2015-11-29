@@ -24,5 +24,5 @@ public class PatrolGyroSensor extends EV3GyroSensor {
 		
 		return sample[0];
 	}
-
+	
 }
