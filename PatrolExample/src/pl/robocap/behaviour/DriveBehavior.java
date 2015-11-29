@@ -23,13 +23,13 @@ public class DriveBehavior implements Behavior {
 			Thread.yield();
 		}
 		
-		Motor.B.stop();
-		Motor.C.stop();
+		Motor.B.stop(true);
+		Motor.C.stop(true);
 	}
 
 	@Override
 	public void suppress() {
 		suppressed = true;
 	}
-
+	
 }

@@ -12,8 +12,7 @@ public class Patrol {
 
 
 	public static void main(String[] args) {
-		Behavior[] patrolBehaviors = { new DriveBehavior(),
-				new RotateBehavior(), new AttackBehavior() };
+		Behavior[] patrolBehaviors = { new DriveBehavior(), new RotateBehavior(), new AttackBehavior() };
 		Arbitrator arbitrator = new Arbitrator(patrolBehaviors);
 
 		LCD.drawString("Ready for action!", 0, 1);

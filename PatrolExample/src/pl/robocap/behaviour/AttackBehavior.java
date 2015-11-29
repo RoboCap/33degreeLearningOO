@@ -8,22 +8,23 @@ import pl.robocap.sensor.PatrolUltrasonicSensor;
 
 public class AttackBehavior implements Behavior {
 
+	private static final float ATTACK_DISTANCE = 0.2f;
 	private PatrolUltrasonicSensor ultrasonicSensor = new PatrolUltrasonicSensor(
-			SensorPort.S4);
+			SensorPort.S3);
 	private boolean suppressed = false;
 
 	@Override
 	public boolean takeControl() {
-		return ultrasonicSensor.getDistance() < 0.15f;
+		return ultrasonicSensor.getDistance() < ATTACK_DISTANCE;
 	}
 
 	@Override
 	public void action() {
 		suppressed = false;
-		if (ultrasonicSensor.getDistance() < 0.15f) {
+		if (ultrasonicSensor.getDistance() < ATTACK_DISTANCE) {
 			Sound.playNote(Sound.FLUTE, Sound.C2, 500);
 			Delay.msDelay(3000);
-			while (ultrasonicSensor.getDistance() < 0.15f && !suppressed) {
+			while (ultrasonicSensor.getDistance() < ATTACK_DISTANCE && !suppressed) {
 				Sound.beepSequenceUp();
 				Delay.msDelay(2000);
 			}

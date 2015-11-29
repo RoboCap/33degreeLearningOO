@@ -1,13 +1,14 @@
 package pl.robocap.behaviour;
 
-import pl.robocap.sensor.PatrolGyroSensor;
 import lejos.hardware.motor.Motor;
 import lejos.hardware.port.SensorPort;
 import lejos.robotics.subsumption.Behavior;
+import pl.robocap.sensor.PatrolGyroSensor;
 
 public class RotateBehavior implements Behavior {
 
-	private static final int DISTANCE = 20;
+	private static final int ROTATION_LEVEL = 170;
+	private static final int DISTANCE = 1500;
 	
 	private boolean suppressed = false;
 	private PatrolGyroSensor gyroSensor = new PatrolGyroSensor(SensorPort.S4);
@@ -25,10 +26,10 @@ public class RotateBehavior implements Behavior {
 			gyroSensor.reset();
 		}
 
-		Motor.B.rotate(Integer.MAX_VALUE, true);
-		Motor.C.rotate(-Integer.MAX_VALUE, true);
-
-		while (gyroSensor.getAngle() < 360 && !suppressed) {
+		Motor.B.backward();
+		Motor.C.forward();
+		
+		while (gyroSensor.getAngle() < ROTATION_LEVEL && !suppressed) {
 			Thread.yield(); // wait till turn is complete or suppressed is
 							// called
 		}
@@ -36,7 +37,7 @@ public class RotateBehavior implements Behavior {
 		Motor.B.stop();
 		Motor.C.stop();
 
-		if (gyroSensor.getAngle() >= 360) {
+		if (gyroSensor.getAngle() >= ROTATION_LEVEL) {
 			Motor.B.resetTachoCount();
 			Motor.C.resetTachoCount();
 		}
@@ -46,5 +47,5 @@ public class RotateBehavior implements Behavior {
 	public void suppress() {
 		suppressed = true;
 	}
-
+	
 }
